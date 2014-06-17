@@ -43,3 +43,10 @@ cacheSolve <- function(x, ...) {
     # return the inverse
     x$getInverse()
 }
+
+
+## my minimal test driver
+#setwd("~/OnlineEDU/Coursera/DS_Specialization/R_Programming/Assignment_2/
+#      ProgrammingAssignment2")
+#source("cachematrix.R")
+#cacheSolve(makeCacheMatrix(matrix(rnorm(9), 3, 3)))
