@@ -38,8 +38,8 @@ cacheSolve <- function(x, ...) {
     }
     # the inverse has not been calculated yet
     else {
-        inv <- solve(x$Get())
-        x$SetInv(inv)
+        inv <- solve(x$get())
+        x$setInv(inv)
     }
 
     # the inverse was either cached or solved and is ok to return now
