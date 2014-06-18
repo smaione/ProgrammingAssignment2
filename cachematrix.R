@@ -1,6 +1,9 @@
-## This function creates a special "matrix" object that can cache its inverse
+
+## makeCacheMatrix creates a special "matrix" object that can cache its inverse
+## while returning a list of functions to get and set values
+##
 makeCacheMatrix <- function(x = matrix()) {
-    # the cached inverse will remain null until set
+    # cached inverse is NULL until setInverse is called
     inv <- NULL
     
     # assigns the data to x and clear the cached inverse
@@ -20,19 +23,23 @@ makeCacheMatrix <- function(x = matrix()) {
     
     # return a list of functions that manipulate the data of the cacheMatrix
     return(list(set = get, get = get,
-           setInverse = setInverse,
-           getInverse = getInverse))
+                setInverse = setInverse, getInverse = getInverse))
 }
 
 
-## This function computes the inverse of the special "matrix" returned by 
+## cacheSolve computes the inverse of the special "matrix" returned by 
 ## makeCacheMatrix above. If the inverse has already been calculated 
 ## (and the matrix has not changed), then the cachesolve should retrieve the
 ## inverse from the cache.
+##
 cacheSolve <- function(x, ...) {
     # check if the inverse of x already exists
     if(!is.null(x$getInverse())) {
-        # if so, return it
+        # let it be known that the inverse was cached so we know
+        # we're not unnecessarily computing it
+        message("getting cached data")
+        
+        # return the cached inverse
         return(x$getInverse())
     }
 
@@ -45,8 +52,17 @@ cacheSolve <- function(x, ...) {
 }
 
 
-## my minimal test driver
-#setwd("~/OnlineEDU/Coursera/DS_Specialization/R_Programming/Assignment_2/
+# ## my minimal test driver
+# ## ctrl+shft+c to (un)comment blocks of code
+#
+# setwd("~/OnlineEDU/Coursera/DS_Specialization/R_Programming/Assignment_2/
 #      ProgrammingAssignment2")
-#source("cachematrix.R")
-#cacheSolve(makeCacheMatrix(matrix(rnorm(9), 3, 3)))
+# source("cachematrix.R")
+# 
+# # make a random square nxn matrix between 2x2 and 10x10
+# n <- sample(2:10, 1)
+# M <- makeCacheMatrix(matrix(rnorm(n * n), n, n))
+# 
+# # soleve it twice to check if the cached inverse is persistent
+# cacheSolve(M)
+# cacheSolve(M)
