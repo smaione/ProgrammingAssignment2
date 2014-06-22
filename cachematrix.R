@@ -1,3 +1,7 @@
+## Stephen Maione
+## R Programming
+## Assignment 2: Lexical Scoping
+
 
 ## makeCacheMatrix creates a special "matrix" object that can cache its inverse
 ## while returning a list of functions to get and set values
@@ -54,6 +58,7 @@ cacheSolve <- function(x, ...) {
 
 # ## my minimal test driver
 # ## ctrl+shft+c to (un)comment blocks of code
+# ## ctrl+enter to run them in the console
 #
 # setwd("~/OnlineEDU/Coursera/DS_Specialization/R_Programming/Assignment_2/
 #      ProgrammingAssignment2")
@@ -63,6 +68,6 @@ cacheSolve <- function(x, ...) {
 # n <- sample(2:10, 1)
 # M <- makeCacheMatrix(matrix(rnorm(n * n), n, n))
 # 
-# # soleve it twice to check if the cached inverse is persistent
+# # solve it twice to check if the cached inverse is persistent
 # cacheSolve(M)
 # cacheSolve(M)
